@@ -1,5 +1,10 @@
 package br.com.gfc.projeto.entity;
 
+import java.util.Objects;
+
+import org.springframework.beans.BeanUtils;
+
+import br.com.gfc.projeto.dto.UsuarioDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,6 +33,11 @@ public class UsuarioEntity {
 	
 	@Column(nullable = false)
 	private String email;
+	
+	//construtor
+	public UsuarioEntity(UsuarioDTO usuario) {
+		BeanUtils.copyProperties(usuario, this);
+	}
 
 	public Long getId() {
 		return id;
@@ -67,6 +77,23 @@ public class UsuarioEntity {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UsuarioEntity other = (UsuarioEntity) obj;
+		return Objects.equals(id, other.id);
 	}
 
 
