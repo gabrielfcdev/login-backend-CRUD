@@ -6,4 +6,6 @@ import br.com.gfc.projeto.entity.UsuarioEntity;
 
 public interface UsuarioRepository extends JpaRepository<UsuarioEntity, Long>  {
 	
+	
+	
 }

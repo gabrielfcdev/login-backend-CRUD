@@ -7,7 +7,7 @@ import br.com.gfc.projeto.entity.UsuarioEntity;
 
 public class UsuarioDTO {
 
-private Long id;
+    private Long id;
 	
 	private String nome;
 	private String login;
