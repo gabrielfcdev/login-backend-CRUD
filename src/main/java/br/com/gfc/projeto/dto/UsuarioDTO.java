@@ -8,14 +8,12 @@ import br.com.gfc.projeto.entity.UsuarioEntity;
 public class UsuarioDTO {
 
     private Long id;
-	
-	private String nome;
+    private String nome;
 	private String login;
 	private String senha;
 	private String email;
 	
-	 public UsuarioDTO() {
-	    }
+	public UsuarioDTO() {}
 	
 	public UsuarioDTO(UsuarioEntity usuario) {
 		BeanUtils.copyProperties(usuario, this);
