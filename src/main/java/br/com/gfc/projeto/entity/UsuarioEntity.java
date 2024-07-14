@@ -18,11 +18,6 @@ import jakarta.persistence.Table;
 
 public class UsuarioEntity {
 	
-	
-	
-	public UsuarioEntity() {
-	
-	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,6 +39,11 @@ public class UsuarioEntity {
 	public UsuarioEntity(UsuarioDTO usuario) {
 		BeanUtils.copyProperties(usuario, this);
 	}
+	
+	
+	public UsuarioEntity() {
+	}
+
 
 	public Long getId() {
 		return id;
