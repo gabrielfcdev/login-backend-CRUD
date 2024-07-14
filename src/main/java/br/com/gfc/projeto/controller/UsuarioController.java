@@ -39,10 +39,10 @@ public class UsuarioController {
 		return usuarioService.alterar(usuario);
 	}
 	
-	@DeleteMapping("{/id}")
-	public ResponseEntity<Void> excluir( @PathVariable ("id") Long id) { 
+	@DeleteMapping("/{id}")
+    public ResponseEntity<Void> excluir(@PathVariable Long id) {
 		usuarioService.excluir(id);
-		return ResponseEntity.ok().build();
-	}
+        return ResponseEntity.noContent().build();
+    }
 
 }

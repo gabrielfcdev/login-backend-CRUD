@@ -18,6 +18,12 @@ import jakarta.persistence.Table;
 
 public class UsuarioEntity {
 	
+	
+	
+	public UsuarioEntity() {
+	
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
