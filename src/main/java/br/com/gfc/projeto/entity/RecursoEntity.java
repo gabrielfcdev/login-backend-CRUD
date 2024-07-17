@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import org.springframework.beans.BeanUtils;
 
-import br.com.gfc.projeto.dto.UsuarioDTO;
+import br.com.gfc.projeto.dto.RecursoDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,35 +13,25 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "GFC_USUARIO")
-
-
-public class UsuarioEntity {
-	
+@Table (name = "GFC_RECURSO")
+public class RecursoEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@Column(nullable = false)
 	private String nome;
 	
-	@Column(nullable = false, unique = true)
-	private String login;
-	
 	@Column(nullable = false)
-	private String senha;
+	private String chave;
 	
-	@Column(nullable = false)
-	private String email;
-	
-	//construtor
-	public UsuarioEntity(UsuarioDTO usuario) {
-		BeanUtils.copyProperties(usuario, this);
+	public RecursoEntity() {
+		
 	}
-	
-	
-	public UsuarioEntity() {
+	public RecursoEntity(RecursoDTO recurso) {
+		BeanUtils.copyProperties(recurso, this);
+		
 	}
 	
 
@@ -61,28 +51,12 @@ public class UsuarioEntity {
 		this.nome = nome;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getChave() {
+		return chave;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
+	public void setChave(String chave) {
+		this.chave = chave;
 	}
 
 	@Override
@@ -98,9 +72,12 @@ public class UsuarioEntity {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		UsuarioEntity other = (UsuarioEntity) obj;
+		RecursoEntity other = (RecursoEntity) obj;
 		return Objects.equals(id, other.id);
 	}
+	
+	
+	
+	
 
-
-}
+}	
