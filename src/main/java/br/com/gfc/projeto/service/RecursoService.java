@@ -1,10 +1,13 @@
 package br.com.gfc.projeto.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import br.com.gfc.projeto.repository.RecursoRepository;
 import br.com.gfc.projeto.dto.RecursoDTO;
 import br.com.gfc.projeto.entity.RecursoEntity;
 
+@Service
 public class RecursoService {
 	@Autowired
 	private RecursoRepository recursoRepository;
