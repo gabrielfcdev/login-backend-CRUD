@@ -37,7 +37,7 @@ public class UsuarioController {
 	}
 	
 	@PutMapping
-	public UsuarioDTO alterar (UsuarioDTO usuario) {
+	public UsuarioDTO alterar(@RequestBody UsuarioDTO usuario) {
 		return usuarioService.alterar(usuario);
 	}
 	
