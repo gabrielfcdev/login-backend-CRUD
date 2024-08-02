@@ -1,5 +1,5 @@
 
-INSERT INTO GFC_USUARIO (ID, NOME, LOGIN, SENHA, EMAIL) VALUES (5, 'Gabriel', 'gabrielS', 'gabriel', 'gabriel');
+INSERT INTO GFC_USUARIO (ID, NOME, LOGIN, SENHA, EMAIL) VALUES (1, 'Gabriel', 'gabriel12', '123', 'gabriel@gmail');
 
 ALTER SEQUENCE GFC_USUARIO_ID_SEQ RESTART WITH 2;
 

@@ -22,10 +22,10 @@ import io.jsonwebtoken.security.Keys;
 @Component
 public class JwtUtils {
 	
-	@Value("${projeto.jwtSecret")
+	@Value("${projeto.jwtSecret}")
 	private String jwtSecret;
 	
-	@Value("${projeto.jweExpiration")
+	@Value("${projeto.jwtExpirationMs}")
 	private int jwtExpirationMs;
 	
 	public String generateTokenFromUserDetailsImpl(UserDetailsImpl userDetail) {
