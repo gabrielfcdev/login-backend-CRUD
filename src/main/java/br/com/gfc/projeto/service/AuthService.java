@@ -14,28 +14,23 @@ import br.com.gfc.projeto.secury.jwt.JwtUtils;
 @Service
 public class AuthService {
 
-	private AuthenticationManager authenticationManager;
-	private JwtUtils jwtUtils;
+	@Autowired
+	private AuthenticationManager authenticatioManager;
 	
 	@Autowired
-    public AuthService(AuthenticationManager authenticationManager, JwtUtils jwtUtils) {
-        this.authenticationManager = authenticationManager;
-        this.jwtUtils = jwtUtils;
-    }
+	private JwtUtils jwtUtils;
 	
-	public AcessDTO login (AuthenticationDTO authDto) {
+	public AcessDTO login(AuthenticationDTO authDto) {
 		
 		try {
-		//cria mecanismo de credencial para o Spring
-		
+		//Cria mecanismo de credencial para o spring
 		UsernamePasswordAuthenticationToken userAuth = 
 				new UsernamePasswordAuthenticationToken(authDto.getUsername(), authDto.getPassword());
 		
-		//prepara o mecanismo para autentication
+		//Prepara mecanismo para autenticacao
+		Authentication authentication = authenticatioManager.authenticate(userAuth);
 		
-		Authentication authentication = authenticationManager.authenticate(userAuth);
-		
-		//busca o usuario logado
+		//Busca usuario logado
 		UserDetailsImpl userAuthenticate = (UserDetailsImpl)authentication.getPrincipal();
 		
 		String token = jwtUtils.generateTokenFromUserDetailsImpl(userAuthenticate);
@@ -45,9 +40,8 @@ public class AuthService {
 		return accessDto;
 		
 		}catch(BadCredentialsException e) {
-			//TODO Login ou Senha Invalida
+			//TODO LOGIN OU SENHA INVALIDO
 		}
-		
 		return new AcessDTO("Acesso negado");
 	}
 }

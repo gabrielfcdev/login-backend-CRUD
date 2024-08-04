@@ -18,7 +18,7 @@ import br.com.gfc.projeto.service.RecursoService;
 
 @RestController
 @RequestMapping(value="/recurso")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin
 public class RecursoController {
 	@Autowired
 	private RecursoService recursoService;

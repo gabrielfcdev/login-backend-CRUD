@@ -9,25 +9,23 @@ import br.com.gfc.projeto.entity.RecursoEntity;
 
 @Service
 public class RecursoService {
+
 	@Autowired
 	private RecursoRepository recursoRepository;
 	
 	public List<RecursoDTO> listarTodos(){
 		List<RecursoEntity> recursos = recursoRepository.findAll();
 		return recursos.stream().map(RecursoDTO::new).toList();
-	} 
+	}
 	
 	public void inserir(RecursoDTO recurso) {
 		RecursoEntity recursoEntity = new RecursoEntity(recurso);
 		recursoRepository.save(recursoEntity);
-		
 	}
 	
 	public RecursoDTO alterar(RecursoDTO recurso) {
 		RecursoEntity recursoEntity = new RecursoEntity(recurso);
 		return new RecursoDTO(recursoRepository.save(recursoEntity));
-		
-		
 	}
 	
 	public void excluir(Long id) {
@@ -38,5 +36,4 @@ public class RecursoService {
 	public RecursoDTO buscarPorId(Long id) {
 		return new RecursoDTO(recursoRepository.findById(id).get());
 	}
-
 }

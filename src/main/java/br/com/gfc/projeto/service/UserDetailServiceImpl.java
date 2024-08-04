@@ -10,7 +10,7 @@ import br.com.gfc.projeto.entity.UsuarioEntity;
 import br.com.gfc.projeto.repository.UsuarioRepository;
 
 @Service
-public class UserDetailServiceImpl implements UserDetailsService {
+public class UserDetailServiceImpl implements UserDetailsService{
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
@@ -18,11 +18,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		UsuarioEntity usuario = usuarioRepository.findByLogin(username).get();
-		
-		
 		return UserDetailsImpl.build(usuario);
 	}
-	
-	
 
 }
