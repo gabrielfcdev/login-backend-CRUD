@@ -17,13 +17,12 @@ public class UsuarioService {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
-	@Autowired
+	@Autowired(required = true)
 	private PasswordEncoder passwordEncoder;
 	
 	public List<UsuarioDTO> listarTodos(){
 		List<UsuarioEntity> usuarios = usuarioRepository.findAll();
 		return usuarios.stream() .map(UsuarioDTO::new).toList();
-		
 	}
 	
 	public void inserir(UsuarioDTO usuario) {

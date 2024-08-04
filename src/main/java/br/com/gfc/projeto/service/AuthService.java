@@ -15,9 +15,13 @@ import br.com.gfc.projeto.secury.jwt.JwtUtils;
 public class AuthService {
 
 	private AuthenticationManager authenticationManager;
+	private JwtUtils jwtUtils;
 	
 	@Autowired
-	private JwtUtils jwtUtils;
+    public AuthService(AuthenticationManager authenticationManager, JwtUtils jwtUtils) {
+        this.authenticationManager = authenticationManager;
+        this.jwtUtils = jwtUtils;
+    }
 	
 	public AcessDTO login (AuthenticationDTO authDto) {
 		
@@ -36,14 +40,14 @@ public class AuthService {
 		
 		String token = jwtUtils.generateTokenFromUserDetailsImpl(userAuthenticate);
 		
-		AcessDTO acessDto = new AcessDTO(token);
+		AcessDTO accessDto = new AcessDTO(token);
 		
-		return acessDto;
+		return accessDto;
 		
 		}catch(BadCredentialsException e) {
 			//TODO Login ou Senha Invalida
 		}
 		
-		return null;
+		return new AcessDTO("Acesso negado");
 	}
 }
