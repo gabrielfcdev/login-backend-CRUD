@@ -62,14 +62,21 @@ public class UsuarioService {
 	}
 		
 	public String verificarCadastro(String uuid) {
-		System.out.println(uuid);
 		UsuarioVerificadorEntity usuarioVerificacao =  usuarioVerificadorRepository.findByUuid(UUID.fromString(uuid)).get();
 		
-		
-		if(usuarioVerificacao != null)
-		System.out.println(usuarioVerificacao.getId());
-		
-		return null;
+		if(usuarioVerificacao != null) {
+			if(usuarioVerificacao.getDataExpiracao().compareTo(Instant.now()) >= 0) {	
+				UsuarioEntity u = usuarioVerificacao.getUsuario();
+				u.setSituacao(TipoSituacaoUsuario.ATIVO);
+				usuarioRepository.save(u);
+				return "Usuario Verificado";				
+			}else {
+					usuarioVerificadorRepository.delete(usuarioVerificacao);		
+					return "Tempo de verificação expirado";
+			} 
+		}else {
+			return "Usuario não verificado";
+		}
 	}
 
 	public UsuarioDTO alterar(UsuarioDTO usuario) {
